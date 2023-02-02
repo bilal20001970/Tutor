@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+{% load static %}
+{% load bootstrap_icons %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<body style="font-family:Helvetica;">
+    <nav class="navbar" style="background-color: #0D6EFD;">
+        <a href="{% url 'home' %}">
+            <div class="col-sm-4 align-middle">
+            <button class="btn btn-outline-light rounded-pill btn-sm" type="button" >{% bs_icon 'box-arrow-left' %} &nbsp; Go Back</button>
+            </div>
+        </a>
+      <div class="container justify-content-center">
+        <a class="navbar-brand" href="{% url 'home' %}">
+          <img src="{% static 'Tutor/static/Tutor/tutor_white.png' %}" width="126" height="40"/>
+        </a>
+      </div>
+    </nav>
+    <hr>
+    <div class="grid-container" style="display:grid; grid-template-columns: auto auto auto; ";>
+            <div class="col justify-content-center">
+                <div class="col shadow">
+                    <div style="height:90vh;">
+                        <video controls width="100%">
+                            <source src="{{ photo.video.url }}" type="video/mp4">
+                        </video>
+                        <ul class="nav justify-content border border-6 border-primary rounded-pill space-between bg-dark">
+                          <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">
+                                <img src="{% static 'Tutor/static/Tutor/Tutor_Blue.png' %}" width="40px" class="rounded-circle p-1"/>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#"></a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="#">Name: {{ photo.video_name }}</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link">Category: {{ photo.category }}</a>
+                            <a class="nav-link"></a>
+                          </li>
+                        </ul>
+                    </div>
+                     <div>
+
+                    </div>
+                    <br/>
+                    <div class="form-group">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="btn btn-secondary">Post Comment</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                {% if not video.comments.all %}
+                    Ima
+                {% else %}
+                    {% for comment in  video.comments.all %}
+                    <div class="row">
+                        {{ comment.comment}}
+                        {{ comment.date_added }}
+                    </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+{% extends 'navbar.html' %}
+{% load thumbnail %}
+{% load bootstrap_icons %}
+
+{% block content %}
+<hr>
+<div class="container p-1">
+    <div class="row">
+        <div class="col mb-2 col-1">
+            <ul class="nav flex-column">
+                <li><a href="#" class="nav-link">{% bs_icon 'cpu' %}</a></li>
+                <li><a href="#" class="nav-link">{% bs_icon 'cpu' %}</a></li>
+                <li><a href="#" class="nav-link">{% bs_icon 'cpu' %}</a></li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="row">
+                    <div class="col d-flex justify-content-sm-start gap-2">
+                        <button type="button" class="btn btn-primary rounded-pill btn-sm">Technology</button>
+                        <button type="button" class="btn btn-primary rounded-pill btn-sm">Journalism</button>
+                        <button type="button" class="btn btn-primary rounded-pill btn-sm">Business</button>
+                        <button type="button" class="btn btn-primary rounded-pill btn-sm">Medicine</button>
+                        <button type="button" class="btn btn-primary rounded-pill btn-sm">Arts</button>
+                    </div>
+            </div>
+            <div class="row">
+        {% for image in images %}
+            <div class="col-sm-4 col-md-3">
+                <div class="card my-4 shadow" style="width:18rem;">
+                    {% thumbnail image.image "200x200" crop="center" as im %}
+                        <img src="{{ image.image.url }}" height="200px" class="card-img-top" alt="...">
+                    {% endthumbnail %}
+                    <div class="card-body">
+                    <p class="card-text">Name: {{ image.video_name }}</p>
+                    <p class="card-text">Category: {{ image.category }}</p>
+                    <a href="{% url 'view' image.id %}" style="display: inline-block;" class="btn btn-primary"> Watch Lesson</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
