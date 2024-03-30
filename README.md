@@ -21,15 +21,15 @@ Make sure you have python installed on your computer. You can download here [Lin
     git clone https://github.com/CharlesAbuga/Tutor.git
   2. Install necessary extensions on the IDE of your choice.
   3. set up Environment environment and activate it
-    ```python3 -m venv venv
-    source venv/bin/activate ```
+    ```python3 -m venv venv```
+    ```source venv/bin/activate ```
 
   4. Install Django
     ```python3 -m pip install Django```
   5. Install the following packages 
    ```pip install django-bootstrap-v5 ```
-    ```ip install sorl-thumbnail 
-    pip install django-bootstrap-icons ```
+    ```ip install sorl-thumbnail``` 
+    ```pip install django-bootstrap-icons ```
   6. Finally run the project
     ```python3 manage.py runserver```
 
