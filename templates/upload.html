@@ -1,0 +1,13 @@
+{% extends 'navbar.html' %}
+{% load bootstrap_icons %}
+
+{% block content %}
+    <div class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn-btn-secondary">Post</button>
+        </form>
+    </div>
+{% endblock %}
+

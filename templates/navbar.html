@@ -1,0 +1,141 @@
+<!doctype html>
+{% load bootstrap_icons %}
+{% load static %}
+<html lang="en">
+<head>
+  <style>
+    .hello_msg{
+      font-size: 15px;
+      color: white;
+      margin-right: 20px;
+    }
+    body {
+    font-family: Helvetica;
+    transition: background-color .5s;
+    }
+
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      left: 0;
+      background-color: #fff;
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    .sidenav a {
+      padding: 8px 8px 8px 32px;
+      text-decoration: none;
+      font-size: 18px;
+      color:#0D6EFD ;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .sidenav a:hover {
+      color: #111;
+    }
+
+    .sidenav .closebtn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+    }
+
+    #main {
+      transition: margin-left .5s;
+      padding: 16px;
+    }
+
+    @media screen and (max-height: 450px) {
+      .sidenav {padding-top: 15px;}
+      .sidenav a {font-size: 18px;}
+    }
+  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %} {% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary"  style="color:#fff;">
+  <div class="container-fluid">
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#"><img src="media/pics/Tutor_Blue.png" alt="" width="126" height="40"></a>
+      <a href="#"><span class = "hello_msg" style="color:#0D6EFD">Hello, {{ request.user }} </span></a>
+      <hr style="color:#0D6EFD; width:70%; text-align:center;">
+      <a href="#" > {% bs_icon 'cpu' %}Technology</a>
+      <a href="#">{% bs_icon 'camera2' %}Journalism</a>
+      <a href="#">{% bs_icon 'airplane-engines' %}Engineering</a>
+      <a href="#">{% bs_icon 'brush' %}Arts</a>
+      <a href="#">{% bs_icon 'capsule' %}Medicine</a>
+
+    </div>
+
+    <div id="main">
+      <span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776; </span>
+    </div>
+    <a class="navbar-brand" href="{% url 'home' %}">
+        <img src="media/pics/tutor_white.png" alt="" width="110" height="35">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <script>
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+        document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("main").style.marginLeft= "0";
+        document.body.style.backgroundColor = "white";
+      }
+    </script>
+    <div class="collapse navbar-collapse container-fluid" id="navbarScroll">
+      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'upload' %}" >Upload video</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'Tutor/static/Tutor/White.png' %}" width="30px" height="30px" class="rounded-circle p-1"/>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+            <li><a class="dropdown-item" href="#">Journalism</a></li>
+            <li><a class="dropdown-item" href="#">Technology</a></li>
+            <li><a class="dropdown-item" href="#">Engineering</a></li>
+            <li><a class="dropdown-item" href="#">Medicine</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Log out</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2 rounded-pill" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-light rounded-pill" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+
+{% block content %} {% endblock %}
+</body>
+</html>
+
+
